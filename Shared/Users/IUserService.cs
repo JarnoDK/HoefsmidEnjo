@@ -18,13 +18,13 @@ namespace HoefsmidEnjo.Shared.Users
          */
         public Task<UserDto.Detail> GetAsync(int id);
         /*
-         * Get User with given firstname and lastname
+         * Get Users with name containing the given firstname and lastname
          */
-        public Task<UserDto.Detail> GetAsync(string firstname, string lastname);
+        public Task<IEnumerable<UserDto.Detail>> GetAsync(string firstname, string lastname);
         /*
          * Create a new User using given model
          */
-        public Task<UserDto.Index> CreateAsync(UserDto.Create model);
+        public Task<UserDto.Detail> CreateAsync(UserDto.Create model);
         /*
          * Delete user with given ID
          */
