@@ -1,6 +1,9 @@
 ﻿
 
 using HoefsmidEnjo.Shared.Users;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Services.UserService
 {
@@ -11,13 +14,42 @@ namespace Services.UserService
 
         static FakeUserService()
         {
-
+            Users = new()
+            {
+                new UserDto.Detail
+                {
+                    Id = 0,
+                    Email = "Test@Test.be",
+                    FirstName ="Marie",
+                    LastName = "Dubois",
+                    Role = UserRole.Klant,
+                    Phone = "04 92 88 72 59"
+                },
+                new UserDto.Detail
+                {
+                    Id = 1,
+                    Email = "StevenStone@Test.be",
+                    FirstName = "Steven",
+                    LastName = "Stone",
+                    Role = UserRole.Klant,
+                    Phone = "04 12 44 77 32"
+                },
+                new UserDto.Detail
+                {
+                    Id = 2,
+                    Email = "CynthiaChamp@Test.be",
+                    FirstName = "Cynthia",
+                    LastName = "Champ",
+                    Role = UserRole.Klant,
+                    Phone = "04 55 67 88 33"
+                }
+            };
         }
 
         public async Task<UserDto.Detail> CreateAsync(UserDto.Create model)
         {
             await Task.Delay(100);
-            UserDto.Detail user = new UserDto.Detail
+            UserDto.Detail user = new()
             {
                 Id = Users.Count + 1,
                 Email = model.Email,

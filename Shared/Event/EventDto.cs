@@ -2,6 +2,7 @@
 
 using FluentValidation;
 using HoefsmidEnjo.Shared.Users;
+using System;
 
 namespace HoefsmidEnjo.Shared.Event
 {

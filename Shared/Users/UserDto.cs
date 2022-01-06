@@ -22,6 +22,7 @@ namespace HoefsmidEnjo.Shared.Users
             public string Pincode { get; set; }
             // Log in on website once it's there + notify clients
             public string Email { get; set; }
+            public string Phone { get; set; }
             public string PassWord { get; set; }
             public UserRole Role { get; set; }
 
@@ -36,6 +37,7 @@ namespace HoefsmidEnjo.Shared.Users
             public string Pincode { get; set; }
             // Log in on website once it's there + notify clients
             public string Email { get; set; }
+            public string Phone { get; set; }
             public UserRole Role { get; set; } = UserRole.Klant;
             public string Password { get; set; }
 
@@ -46,6 +48,7 @@ namespace HoefsmidEnjo.Shared.Users
                     RuleFor(x => x.FirstName).NotNull().NotEmpty().WithName("Voornaam");
                     RuleFor(x => x.LastName).NotNull().NotEmpty().WithName("Achternaam");
                     RuleFor(x => x.Email).EmailAddress().NotNull().NotEmpty().WithName("Email");
+                    RuleFor(x => x.Phone).NotNull().NotEmpty().WithName("Telefoon");
 
 
                     When(x => x.Role != UserRole.Klant, () =>

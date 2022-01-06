@@ -1,4 +1,7 @@
-﻿namespace HoefsmidEnjo.Shared.Invoice
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace HoefsmidEnjo.Shared.Invoice
 {
     public interface IInvoiceService
     {

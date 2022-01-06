@@ -1,5 +1,8 @@
 ﻿using HoefsmidEnjo.Shared.Event;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Services.EventService
 {
@@ -42,7 +45,8 @@ namespace Services.EventService
         public async Task<EventDto.Index> CreateAsync(EventDto.Create model)
         {
             await Task.Delay(100);
-            EventDto.Index ev = new EventDto.Index{
+            EventDto.Index ev = new()
+            {
                 Id = (Events.Count + 1),
                 Location = model.Location,
                 Time = model.Time,
