@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using HoefsmidEnjo.Shared.InvoiceLine;
 using HoefsmidEnjo.Shared.Users;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,19 @@ namespace HoefsmidEnjo.Shared.Invoice
         public class Index
         {
             public int Id { get; set; }
+            [JsonConverter(typeof(DateFormatConverter),"dd/MM/yyyy HH:mm")]
             public DateTime Time { get; set; }
             public UserDto.Index Client { get; set; } = new();
-            public List<InvoiceLineDto.Index> InvoiceLines { get; set; }
+            public List<InvoiceLineDto.Index> InvoiceLines { get; set; } = new();
         }
 
         public class Create
         {
             
             public UserDto.Index Client { get; set; }
-            public List<InvoiceLineDto.Index> InvoiceLines { get; set; } = new();
+            public List<InvoiceLineDto.Create> InvoiceLines { get; set; } = new();
+            public string Time { get; set; }
+
             public class Validator : AbstractValidator<Create> {
 
                 public Validator()

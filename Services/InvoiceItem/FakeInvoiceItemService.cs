@@ -10,15 +10,28 @@ namespace Services.InvoiceItem
     public class FakeInvoiceItemService : IInvoiceItemService
     {
         private static readonly List<InvoiceItemDto.Index> Items = new();
-        public FakeInvoiceItemService()
+        static FakeInvoiceItemService()
         {
-
+            Items = new List<InvoiceItemDto.Index>{
+                new InvoiceItemDto.Index
+                {
+                    Id = 0, Name = "Item1" , UnitPrice = 5.25
+                },
+                new InvoiceItemDto.Index
+                {
+                    Id = 1, Name = "Item2" , UnitPrice = 2.35
+                },
+                new InvoiceItemDto.Index
+                {
+                    Id = 2, Name = "Item3" , UnitPrice = 7.45
+                },
+            };
         }
 
         public async Task<InvoiceItemDto.Index> CreateAsync(InvoiceItemDto.Create model)
         {
             await Task.Delay(100);
-            InvoiceItemDto.Index item = new InvoiceItemDto.Index
+            InvoiceItemDto.Index item = new()
             {
                 Id = Items.Count,
                 Name = model.Name,

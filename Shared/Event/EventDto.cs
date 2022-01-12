@@ -21,7 +21,7 @@ namespace HoefsmidEnjo.Shared.Event
         {
             public string Title { get; set; }
             public string Location { get; set; }
-            public DateTime Time { get; set; }
+            public DateTime Time { get; set; } = DateTime.Now;
             public UserDto.Detail Client { get; set; }
 
             public class Validator : AbstractValidator<Create>

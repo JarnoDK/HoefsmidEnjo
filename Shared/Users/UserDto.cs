@@ -23,7 +23,7 @@ namespace HoefsmidEnjo.Shared.Users
             // Log in on website once it's there + notify clients
             public string Email { get; set; }
             public string Phone { get; set; }
-            public string PassWord { get; set; }
+            public string Password { get; set; }
             public UserRole Role { get; set; }
 
 
@@ -54,7 +54,7 @@ namespace HoefsmidEnjo.Shared.Users
                     When(x => x.Role != UserRole.Klant, () =>
                     {
                         RuleFor(x => x.Pincode).MinimumLength(4).WithName("Pincode");
-                        RuleFor(x => x.PassWord).MinimumLength(6).WithName("Wachtwoord");
+                        RuleFor(x => x.Password).MinimumLength(6).WithName("Wachtwoord");
                     });
                 }
             }

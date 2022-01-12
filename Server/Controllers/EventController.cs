@@ -1,4 +1,4 @@
-﻿using HoefsmidEnjo.Shared.Invoice;
+﻿using HoefsmidEnjo.Shared.Event;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,16 +9,16 @@ namespace HoefsmidEnjo.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class InvoiceController : ControllerBase
+    public class EventController : ControllerBase
     {
-        private readonly IInvoiceService Service;
-        public InvoiceController(IInvoiceService service)
+        private readonly IEventService Service;
+        public EventController(IEventService service)
         {
             this.Service = service;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<InvoiceDto.Index>> GetAllAsync()
+        public async Task<IEnumerable<EventDto.Index>> GetAllAsync()
         {
             return await Service.GetAsync();
         }
@@ -26,7 +26,7 @@ namespace HoefsmidEnjo.Server.Controllers
          * Get by id
          */
         [HttpGet("{id}")]
-        public async Task<InvoiceDto.Index> GetAsync(int id)
+        public async Task<EventDto.Index> GetAsync(int id)
         {
             return await Service.GetAsync(id);
         }
@@ -35,7 +35,7 @@ namespace HoefsmidEnjo.Server.Controllers
         * Create invoice
         */
         [HttpPost]
-        public async Task<InvoiceDto.Index> CreateAsync(InvoiceDto.Create model)
+        public async Task<EventDto.Index> CreateAsync(EventDto.Create model)
         {
             return await Service.CreateAsync(model);
         }

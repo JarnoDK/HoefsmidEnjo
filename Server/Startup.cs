@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using HoefsmidEnjo.Shared.Event;
 using HoefsmidEnjo.Shared.Invoice;
 using HoefsmidEnjo.Shared.InvoiceItem;
+using HoefsmidEnjo.Shared.InvoiceLine;
 using HoefsmidEnjo.Shared.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +34,7 @@ namespace Server
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.CustomSchemaIds(x => $"{x.DeclaringType.Name}.{x.Name}");
+                c.CustomSchemaIds(type => type.ToString());
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sportstore API", Version = "v1" });
             });
             services.AddControllersWithViews().AddFluentValidation(config =>
@@ -45,9 +46,11 @@ namespace Server
 
 
             services.AddScoped<IInvoiceItemService, FakeInvoiceItemService>();
-            services.AddScoped<IInvoiceService, FakeInvoiceService>();
+            services.AddScoped<IInvoiceLineService, FakeInvoiceLineService>();
             services.AddScoped<IUserService, FakeUserService>();
             services.AddScoped<IEventService, FakeEventService>();
+            services.AddScoped<IInvoiceService, FakeInvoiceService>();
+
 
         }
 
@@ -61,7 +64,11 @@ namespace Server
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hoefsmid Enjo API"));
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    options.RoutePrefix = string.Empty;
+                });
             }
             else
             {

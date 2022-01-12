@@ -55,9 +55,10 @@ namespace Services.UserService
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                PassWord = model.Password,
+                Password = model.Password,
                 Pincode = model.Pincode,
-                Role = model.Role
+                Role = model.Role,
+                Phone = model.Phone
             };
 
             Users.Add(user);
@@ -90,8 +91,8 @@ namespace Services.UserService
         {
             await Task.Delay(100);
             return Users
-                .Where(x => x.FirstName.ToLower().Contains(firstname.ToLower()))
-                .Where(x => x.LastName.ToLower().Contains(lastname.ToLower()));
+                .Where(x => x.FirstName.ToLower().Trim().Contains(firstname.ToLower().Trim()))
+                .Where(x => x.LastName.ToLower().Trim().Contains(lastname.ToLower().Trim()));
         }
     }
 }

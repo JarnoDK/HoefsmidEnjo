@@ -24,20 +24,23 @@ namespace Services.EventService
                         FirstName = "Melissa",
                         LastName = "Benoit",
                         Email = "MelissaBenoit@Test.be",
-                        Id = 1
+                        Id = 1,
+                        Phone = "0492887259"
+
                     }
                 },
-                                new EventDto.Index
+                new EventDto.Index
                 {
                     Id = 2,
                     Location = "Manege t'paardje",
                     Time = DateTime.Now,
-                    Title = "Linker voorpoot Mira",
+                    Title = "Rechter achterpoot Mira",
                     Client = new(){
                         FirstName = "Marie",
                         LastName = "Droite",
                         Email = "MarieDroit@Test.be",
-                        Id = 2
+                        Id = 2,
+                        Phone = "0492887259"
                     }
                 }
             };
