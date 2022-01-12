@@ -21,7 +21,7 @@ namespace HoefsmidEnjo.Shared.Event
         {
             public string Title { get; set; }
             public string Location { get; set; }
-            public DateTime Time { get; set; } = DateTime.Now;
+            public string Time { get; set; } = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             public UserDto.Detail Client { get; set; }
 
             public class Validator : AbstractValidator<Create>
@@ -30,7 +30,7 @@ namespace HoefsmidEnjo.Shared.Event
                 {
                     RuleFor(x => x.Title).NotNull().NotEmpty().MinimumLength(4).WithName("Titel");
                     RuleFor(x => x.Location).NotNull().NotEmpty().MinimumLength(4).WithMessage("Locatie");
-                    RuleFor(x => x.Time).NotNull().NotEmpty().Must(x => x > DateTime.Now).WithMessage("Tijd");
+                    RuleFor(x => x.Time).NotNull().NotEmpty().WithMessage("Tijd");
                     RuleFor(x => x.Client).NotNull().WithName("Klant");
 
                 }

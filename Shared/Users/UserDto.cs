@@ -34,12 +34,12 @@ namespace HoefsmidEnjo.Shared.Users
 
             public string FirstName { get; set; }
             public string LastName { get; set; }
-            public string Pincode { get; set; }
+            public string Pincode { get; set; } = "";
             // Log in on website once it's there + notify clients
             public string Email { get; set; }
             public string Phone { get; set; }
             public UserRole Role { get; set; } = UserRole.Klant;
-            public string Password { get; set; }
+            public string Password { get; set; } = "";
 
             public class Validator: AbstractValidator<Detail>
             {
@@ -51,11 +51,6 @@ namespace HoefsmidEnjo.Shared.Users
                     RuleFor(x => x.Phone).NotNull().NotEmpty().WithName("Telefoon");
 
 
-                    When(x => x.Role != UserRole.Klant, () =>
-                    {
-                        RuleFor(x => x.Pincode).MinimumLength(4).WithName("Pincode");
-                        RuleFor(x => x.Password).MinimumLength(6).WithName("Wachtwoord");
-                    });
                 }
             }
 

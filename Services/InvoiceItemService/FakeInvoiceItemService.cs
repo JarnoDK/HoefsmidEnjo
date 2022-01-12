@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.InvoiceItem
+namespace Services.InvoiceItemService
 {
     public class FakeInvoiceItemService : IInvoiceItemService
     {

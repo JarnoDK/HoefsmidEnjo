@@ -21,8 +21,8 @@ namespace Services.InvoiceService
             InvoiceLines = new List<InvoiceLineDto.Index>
             {
                 new InvoiceLineDto.Index{ Id = 0, Item = ItemService.GetAsync(0).Result ,Amount = 5 },
-                new InvoiceLineDto.Index{ Id = 1, Item = ItemService.GetAsync(0).Result ,Amount = 5 },
-                new InvoiceLineDto.Index{ Id = 2, Item = ItemService.GetAsync(0).Result ,Amount = 5 }
+                new InvoiceLineDto.Index{ Id = 1, Item = ItemService.GetAsync(1).Result ,Amount = 3 },
+                new InvoiceLineDto.Index{ Id = 2, Item = ItemService.GetAsync(2).Result ,Amount = 2 }
 
             };
         }

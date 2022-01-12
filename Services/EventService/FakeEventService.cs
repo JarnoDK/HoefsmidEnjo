@@ -1,4 +1,5 @@
 ﻿using HoefsmidEnjo.Shared.Event;
+using HoefsmidEnjo.Shared.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,15 @@ namespace Services.EventService
     public class FakeEventService : IEventService
     {
 
-        private static readonly List<EventDto.Index> Events;
-        static FakeEventService()
+        private readonly List<EventDto.Index> Events;
+        private readonly IUserService userService;
+        public FakeEventService(IUserService userService)
         {
             Events = new List<EventDto.Index>()
             {
                 new EventDto.Index
                 {
-                    Id = 1,
+                    Id = 0,
                     Location = "Manege t'paardje",
                     Time = DateTime.Now,
                     Title = "Linker voorpoot Aysha",
@@ -31,7 +33,7 @@ namespace Services.EventService
                 },
                 new EventDto.Index
                 {
-                    Id = 2,
+                    Id = 1,
                     Location = "Manege t'paardje",
                     Time = DateTime.Now,
                     Title = "Rechter achterpoot Mira",
@@ -52,15 +54,27 @@ namespace Services.EventService
             {
                 Id = (Events.Count + 1),
                 Location = model.Location,
-                Time = model.Time,
+                Time = ConvertDateTime(model.Time),
                 Title = model.Title,
                 Client = model.Client
             };
 
             Events.Add(ev);
             return ev;
+
+            
         
-                }
+        }
+
+        private DateTime ConvertDateTime(String dt){
+            
+            String[] split = dt.Split(" ");
+            int[] datesplit = split[0].Split("/").Select(s => int.Parse(s)).ToArray();
+            int[] timesplit = split[1].Split(":").Select(s => int.Parse(s)).ToArray();
+
+            return new DateTime(datesplit[2],datesplit[1],datesplit[0],timesplit[0],timesplit[1],0);
+            
+        }
 
         public async Task DeleteAsync(int id)
         {

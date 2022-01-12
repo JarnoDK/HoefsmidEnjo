@@ -32,12 +32,14 @@ namespace HoefsmidEnjo.Server.Controllers
         }
 
         /*
-        * Create invoice
+        * Create event
         */
         [HttpPost]
         public async Task<EventDto.Index> CreateAsync(EventDto.Create model)
         {
+
             return await Service.CreateAsync(model);
+
         }
 
         /*

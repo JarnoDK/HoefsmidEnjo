@@ -7,12 +7,15 @@ using HoefsmidEnjo.Shared.InvoiceLine;
 using HoefsmidEnjo.Shared.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Services.Data;
 using Services.EventService;
-using Services.InvoiceItem;
+using Services.InvoiceItemService;
 using Services.InvoiceService;
 using Services.UserService;
 
@@ -37,6 +40,15 @@ namespace Server
                 c.CustomSchemaIds(type => type.ToString());
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sportstore API", Version = "v1" });
             });
+
+
+            var builder = new SqlConnectionStringBuilder(Configuration.GetConnectionString("sqlserver"));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.ConnectionString)
+                    .EnableSensitiveDataLogging(Configuration.GetValue<bool>("Logging:EnableSqlParameterLogging")));
+
+
+
             services.AddControllersWithViews().AddFluentValidation(config =>
             {
                 //config.RegisterValidatorsFromAssemblyContaining<>();
@@ -44,11 +56,12 @@ namespace Server
             });
             services.AddRazorPages();
 
+            services.AddScoped<DataInitializer>();
 
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IInvoiceItemService, FakeInvoiceItemService>();
             services.AddScoped<IInvoiceLineService, FakeInvoiceLineService>();
-            services.AddScoped<IUserService, FakeUserService>();
-            services.AddScoped<IEventService, FakeEventService>();
+            services.AddScoped<IEventService, EventService>();
             services.AddScoped<IInvoiceService, FakeInvoiceService>();
 
 
@@ -57,7 +70,7 @@ namespace Server
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,DataInitializer data)
         {
             if (env.IsDevelopment())
             {
@@ -77,6 +90,7 @@ namespace Server
                 app.UseHsts();
             }
 
+            data.SeedData();
 
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();

@@ -75,7 +75,22 @@ namespace Services.InvoiceService
         {
             await Task.Delay(100);
 
-            String[] datetime = model.Time.Split(" ");
+            InvoiceDto.Index inv = new()
+            { 
+                Id = Invoices.Max(s => s.Id) +1,
+                Client = model.Client,
+                InvoiceLines = await ConvertInvoiceLineCreate(model.InvoiceLines),
+                Time = Convertdate(model.Time)
+            };
+            Invoices.Add(inv);
+            return inv;
+
+        }
+
+
+        private DateTime Convertdate(string datet){
+
+            string[] datetime = datet.Split(" ");
             string[] date = datetime[0].Split("/");
             int day = int.Parse(date[0]);
             int month = int.Parse(date[1]);
@@ -86,19 +101,8 @@ namespace Services.InvoiceService
             int hour = int.Parse(time[0]);
             int minute = int.Parse(time[1]);
 
-            DateTime dt = new(year,month,day,hour,minute,0); 
-            InvoiceDto.Index inv = new()
-            { 
-                Id = Invoices.Count +1,
-                Client = model.Client,
-                InvoiceLines = await ConvertInvoiceLineCreate(model.InvoiceLines),
-                Time = dt
-            };
-            Invoices.Add(inv);
-            return inv;
-
+            return new(year,month,day,hour,minute,0);
         }
-
 
         private async Task<List<InvoiceLineDto.Index>> ConvertInvoiceLineCreate(List<InvoiceLineDto.Create> model)
         {
