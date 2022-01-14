@@ -9,9 +9,8 @@ namespace Domain.Invoice
 {
     public class InvoiceItem: Entity
     {
-        int id { get; set; }
-        string Name { get; set; }
-        double UnitPrice { get; set; }
+        public string Name { get; set; }
+        public double UnitPrice { get; set; }
 
         public InvoiceItem()
         {

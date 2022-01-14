@@ -59,10 +59,10 @@ namespace Server
             services.AddScoped<DataInitializer>();
 
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IInvoiceItemService, FakeInvoiceItemService>();
+            services.AddScoped<IInvoiceItemService, InvoiceItemService>();
             services.AddScoped<IInvoiceLineService, FakeInvoiceLineService>();
             services.AddScoped<IEventService, EventService>();
-            services.AddScoped<IInvoiceService, FakeInvoiceService>();
+            services.AddScoped<IInvoiceService, InvoiceService>();
 
 
         }

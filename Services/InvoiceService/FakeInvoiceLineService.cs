@@ -30,7 +30,7 @@ namespace Services.InvoiceService
         public async Task<InvoiceLineDto.Index> CreateAsync(InvoiceLineDto.Create model)
         {
             int id = InvoiceLines.Max(s => s.Id) + 1;
-            InvoiceLineDto.Index index=  new InvoiceLineDto.Index { Id = id, Amount = model.Amount, Item = model.Item };
+            InvoiceLineDto.Index index=  new() { Id = id, Amount = model.Amount, Item = model.Item };
             InvoiceLines.Add(index);
             return index;
         }

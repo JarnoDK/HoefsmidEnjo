@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using HoefsmidEnjo.Shared;
 
 namespace Services.EventService
 {
@@ -26,7 +27,7 @@ namespace Services.EventService
         public async Task<EventDto.Index> CreateAsync(EventDto.Create model)
         {
 
-            Event ev = new Event(model.Title, model.Location, ConvertDateTime(model.Time),model.Client.Id);
+            Event ev = new(model.Title, model.Location, Converters.ConvertDateTime(model.Time),model.Client.Id);
             _context.Events.Add(ev);
             _context.SaveChanges();
 
@@ -34,16 +35,7 @@ namespace Services.EventService
 
         }
 
-        private static DateTime ConvertDateTime(string dt)
-        {
 
-            String[] split = dt.Split(" ");
-            int[] datesplit = split[0].Split("/").Select(s => int.Parse(s)).ToArray();
-            int[] timesplit = split[1].Split(":").Select(s => int.Parse(s)).ToArray();
-
-            return new DateTime(datesplit[2], datesplit[1], datesplit[0], timesplit[0], timesplit[1], 0);
-
-        }
 
         private static async Task<EventDto.Index> EventToEventDto(Event ev)
         {

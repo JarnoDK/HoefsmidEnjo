@@ -11,8 +11,7 @@ namespace Services.EventService
     {
 
         private readonly List<EventDto.Index> Events;
-        private readonly IUserService userService;
-        public FakeEventService(IUserService userService)
+        public FakeEventService()
         {
             Events = new List<EventDto.Index>()
             {
@@ -66,9 +65,9 @@ namespace Services.EventService
         
         }
 
-        private DateTime ConvertDateTime(String dt){
+        private static DateTime ConvertDateTime(String dt){
             
-            String[] split = dt.Split(" ");
+            string[] split = dt.Split(" ");
             int[] datesplit = split[0].Split("/").Select(s => int.Parse(s)).ToArray();
             int[] timesplit = split[1].Split(":").Select(s => int.Parse(s)).ToArray();
 

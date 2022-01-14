@@ -88,7 +88,7 @@ namespace Services.InvoiceService
         }
 
 
-        private DateTime Convertdate(string datet){
+        private static DateTime Convertdate(string datet){
 
             string[] datetime = datet.Split(" ");
             string[] date = datetime[0].Split("/");

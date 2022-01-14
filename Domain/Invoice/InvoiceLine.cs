@@ -15,10 +15,10 @@ namespace Domain.Invoice
         }
 
 
-        public InvoiceItem Item { get; set; }
+        public int Item { get; set; }
         public int Amount { get; set; }
         
-        public InvoiceLine(int amount, InvoiceItem item)
+        public InvoiceLine(int amount, int item)
         {
             this.Amount = amount;
             this.Item = item;

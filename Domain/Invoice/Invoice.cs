@@ -12,17 +12,17 @@ namespace Domain.Invoice
     {
         public DateTime Date { get; set; }
         public int Id { get; set; }
-        public List<InvoiceLine> invoiceLines { get; set; }
-        public User User { get; set; }
+        public List<InvoiceLine> InvoiceLines { get; set; }
+        public int User { get; set; }
 
         public Invoice()
         {
 
         }
-        public Invoice(DateTime date, List<InvoiceLine> lines, User user)
+        public Invoice(DateTime date, List<InvoiceLine> lines, int user)
         {
             this.Date = date;
-            this.invoiceLines = lines;
+            this.InvoiceLines = lines;
             this.User = user;
         }
     }
