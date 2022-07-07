@@ -68,5 +68,16 @@ namespace Services.EventService
         {
             return await EventToEventDto(_context.Events.SingleOrDefault(s => s.Id == id));
         }
+
+        public async Task<IEnumerable<EventDto.Index>> GetBetweenDatesAsync(DateTime start, DateTime end)
+        {
+            await Task.Delay(100);
+
+            return
+                _context.Events.Where(s => s.Time.Date >= start.Date)
+                .Where(s => s.Time.Date <= end.Date)
+                .Select(s => EventToEventDto(s).Result)
+                .AsEnumerable();
+        }
     }
 }

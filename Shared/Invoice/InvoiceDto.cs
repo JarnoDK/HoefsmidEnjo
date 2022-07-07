@@ -17,14 +17,15 @@ namespace HoefsmidEnjo.Shared.Invoice
             public int Id { get; set; }
             [JsonConverter(typeof(DateFormatConverter),"dd/MM/yyyy HH:mm")]
             public DateTime Time { get; set; }
-            public UserDto.Index Client { get; set; } = new();
+            public UserDto.Detail Client { get; set; } = new();
+            public UserDto.Detail Seller { get; set; } = new();
             public List<InvoiceLineDto.Index> InvoiceLines { get; set; } = new();
         }
 
         public class Create
         {
             
-            public UserDto.Index Client { get; set; }
+            public UserDto.Detail Client { get; set; }
             public List<InvoiceLineDto.Create> InvoiceLines { get; set; } = new();
             public string Time { get; set; }
 

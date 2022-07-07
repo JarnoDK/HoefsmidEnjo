@@ -25,6 +25,7 @@ namespace HoefsmidEnjo.Shared.Users
             public string Phone { get; set; }
             public string Password { get; set; }
             public UserRole Role { get; set; }
+            public string BTWNumber { get; set; }
 
 
         }

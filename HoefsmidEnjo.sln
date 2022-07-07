@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.0.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 16.0.0.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoefsmidEnjo.Server", "Server\HoefsmidEnjo.Server.csproj", "{2E93E245-7065-43D6-95ED-E89D08150EB0}"
 EndProject
@@ -11,6 +11,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{72F8AECA-F85B-4B4A-BCE1-5BC99DC4E854}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CB807255-A306-49CA-A694-14E9CD762F45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoefsmidEnjoTesting", "HoefsmidEnjoTesting\HoefsmidEnjoTesting.csproj", "{FE255ED3-9BBB-449C-BB31-072D55575C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +84,18 @@ Global
 		{CB807255-A306-49CA-A694-14E9CD762F45}.Release|x64.Build.0 = Release|Any CPU
 		{CB807255-A306-49CA-A694-14E9CD762F45}.Release|x86.ActiveCfg = Release|Any CPU
 		{CB807255-A306-49CA-A694-14E9CD762F45}.Release|x86.Build.0 = Release|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Debug|x64.Build.0 = Debug|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Debug|x86.Build.0 = Debug|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Release|x64.ActiveCfg = Release|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Release|x64.Build.0 = Release|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Release|x86.ActiveCfg = Release|Any CPU
+		{FE255ED3-9BBB-449C-BB31-072D55575C42}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

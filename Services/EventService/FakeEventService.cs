@@ -43,6 +43,20 @@ namespace Services.EventService
                         Id = 2,
                         Phone = "0492887259"
                     }
+                },
+                                new EventDto.Index
+                {
+                    Id = 2,
+                    Location = "Manege t'paardje",
+                    Time = DateTime.Now.AddDays(10),
+                    Title = "Temp",
+                    Client = new(){
+                        FirstName = "Marie",
+                        LastName = "Droite",
+                        Email = "MarieDroit@Test.be",
+                        Id = 2,
+                        Phone = "0492887259"
+                    }
                 }
             };
         }
@@ -61,11 +75,9 @@ namespace Services.EventService
             Events.Add(ev);
             return ev;
 
-            
-        
         }
 
-        private static DateTime ConvertDateTime(String dt){
+        private static DateTime ConvertDateTime(string dt){
             
             string[] split = dt.Split(" ");
             int[] datesplit = split[0].Split("/").Select(s => int.Parse(s)).ToArray();
@@ -96,6 +108,16 @@ namespace Services.EventService
         {
             await Task.Delay(100);
             return Events.FirstOrDefault(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<EventDto.Index>> GetBetweenDatesAsync(DateTime start, DateTime end)
+        {
+            await Task.Delay(100);
+
+            return
+                Events.Where(s => s.Time.Date >= start.Date)
+                .Where(s => s.Time.Date <= end.Date)
+                .AsEnumerable();
         }
     }
 }

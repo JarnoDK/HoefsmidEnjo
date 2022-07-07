@@ -27,7 +27,7 @@ namespace Services.InvoiceService
                 FirstName = "Marie",
                 LastName = "Dubois",
                 Role = UserRole.Klant,
-                Phone = "0492887259"
+                Phone = "cc"
             },
             new UserDto.Detail
             {

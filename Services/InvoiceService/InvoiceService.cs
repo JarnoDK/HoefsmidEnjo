@@ -37,14 +37,18 @@ namespace Services.InvoiceService
             InvoiceDto.Index index= new(){
                 Id = invoice.Id,
                 Time = invoice.Date,
-                Client = UserService.GetAsync(invoice.User).Result,
+                Client = model.Client,
                 InvoiceLines = lines.Select(s => new InvoiceLineDto.Index { 
                     Id = s.Id,
                     Item = ItemService.GetAsync(s.Item).Result,
                     Amount = s.Amount
                 }).ToList()
             };
-
+            ICreateInvoice ci = new Excel();
+            ci.Initialize(index)
+                .AddBuyer()
+                .AddItems()
+                .Save();
             return index;
         }
 
